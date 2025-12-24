@@ -1,61 +1,39 @@
-struct MAT {
-	long long  n , m , A[200][200] ; 
-	MAT (const long long  &n2 ,const long long  &m2 ){
-		n = n2 , m = m2 ; 
-		for (int i = 0 ; i < n ; i++)
-			for (int j = 0 ; j < m ; j++)
-				A[i][j] = 0 ; 
-	}
-	MAT operator * (const MAT &B){
-		MAT C = MAT(n , m) ; 
-		for (int i = 0 ; i < n ; i++){
-			for (int j = 0 ; j < m ; j++){
-				for (int k = 0 ; k < m ; k++)
-					C.A[i][j] = (C.A[i][j] + 1ll * A[i][k] * B.A[k][j] % (mod-1)) % (mod - 1) ; 
-			}
-		}
-		return (C) ; 
-	}
-	void eq(const ll (&a)[5][5] , int n , int m )
-	{
-		for(int i = 0 ; i < n ; i ++ )
-		{
-			for(int j = 0 ; j < m ; j ++ )
-			{
-				A[i][j] = a[i][j] ; 
-			}
-		}
-	}
-	
-	MAT operator + (const MAT &B){
-		MAT C = MAT(n , m) ; 
-		for (int i = 0 ; i < n ; i++){
-			for (int j = 0 ; j < m ; j++)
-				C.A[i][j] = (A[i][j] + B.A[i][j]) % mod  ; 
-		}
-		return (C) ; 
-	}
-	void  printt (){
-		for (int i = 0 ; i < n ; i++){
-			for (int j = 0 ; j < m ; j++ )
-				cout<<A[i][j]<<" "; 
-			cout<<"\n" ;
-		}
-	}
-	MAT operator ^ (long long  x){
-		MAT R = MAT(n , m) ; 
-		for (int i = 0 ; i < n ; i++)
-			R.A[i][i] = 1 ;
-		MAT T = MAT(n , m) ; 
-		for (int i = 0 ; i < n ;i++)
-			for (int j = 0 ;j < m ;j++)
-				T.A[i][j] = A[i][j] ; 
-		while (x > 0){
-			if (x%2)
-				R = R * T ; 
-			T = T * T ; 
-			x/=2 ; 
-		}
-		return R ;
-	}
+struct Matrix {
+    ll n, m, a[200][200];
+    Matrix (const ll &n1, const ll &m1) {
+        n = n1, m = m1;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                a[i][j] = 0;
+    }
+    Matrix operator * (const Matrix &b) {
+        Matrix c = Matrix(n, b.m);
+        for (int i = 0; i < n; i++)
+            for (int k = 0; k < m; k++)
+                for (int j = 0; j < b.m; j++) 
+                    c.a[i][j] = (c.a[i][j] + a[i][k] * b.a[k][j] % mod) % mod;
+        return c;
+    }
+    void prnt() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++)
+                cout << a[i][j] << ' ';
+            cout << '\n';
+        }
+    }
+    Matrix operator ^ (ll b) {
+        Matrix M = Matrix(n, m);
+        Matrix O = Matrix(n, m);
+        for (int i = 0; i < n; i++)
+            M.a[i][i] = 1;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                O.a[i][j] = a[i][j];
+        while (b) {
+            if (b & 1) M = M * O;
+            O = O * O;
+            b >>= 1;
+        }
+        return M;
+    }
 };

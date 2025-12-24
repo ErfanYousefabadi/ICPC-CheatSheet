@@ -1,33 +1,19 @@
-map<pair<int,int>,int>tree;
-int MAXX = 1e5 + 5, MAXY = 1e5+5;
+ll fen[N][N]; //or map<pii, int> fen;
 
-void update( int x, int y, int val )
-{
-    while( x <= MAXX )
-    {
-        int now = y;
-        while( now <= MAXY )
-        {
-            tree[{x,now}] += val;
-            now += now&(-now);
-        }
-        x += x&(-x);
-    }
+void upd (int x, int y, int v) {
+    for (; x <= n; x += x & (-x))
+        for (int i = y; i <= n; i += i & (-i))
+            fen[x][i] += v;
+}
+ 
+ll get (int x, int y) {
+    ll res = 0;
+    for (; x; x -= x & (-x))
+        for (int i = y; i; i -= i & (-i))
+            res += fen[x][i];
+    return res;
 }
 
-int get( int x, int y )
-{
-    int ans = 0;
-    while( x > 0 )
-    {
-        int now = y;
-        while( now > 0 )
-        {
-            if( tree.find({x,now}) != tree.end() )
-                ans += tree[{x,now}];
-            now -= now&(-now);
-        }
-        x -= x&(-x);
-    }
-    return ans;
+ll get (int x1, int y1, int x2, int y2) {
+    return get(x2, y2) - get(x2, y1 - 1) - get(x1 - 1, y2) + get(x1 - 1, y1 - 1);
 }
