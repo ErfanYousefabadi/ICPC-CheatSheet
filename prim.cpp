@@ -1,19 +1,25 @@
-void prim(){
-	fill(d, d + n, inf);
-	set<pair<int,int> > s;
-	for(int i = 0;i < n;i ++)
-		s.insert({d[i],i});
-	int v;
-	while(!s.empty()){
-		v = s.begin() -> second;
-		s.erase(s.begin());
-		for(auto p : adj[v]){
-			int u = p.first, w = p.second;  
-			if(d[u] > w){
-				s.erase({d[u], u});
-				d[u] = w;
-				s.insert({d[u], u});
-			}
-		}
-	}
+memset(dis, 63, sizeof dis);
+dis[1] = 0;
+priority_queue<pll, vector<pll>, greater<pll>> q;
+q.push({0, 1});
+int added = 0;
+ll ans = 0;
+while (added < n) {
+    if (q.empty()) {
+        cout << "IMPOSSIBLE\n";
+        return 0;
+    }
+    auto [w, v] = q.top();
+    q.pop();
+    if (dis[v] < w) continue;
+    added++;
+    mark[v] = true;
+    ans += w;
+    for (auto &[u, ww] : adj[v]) {
+        if (!mark[u] && ww < dis[u]) {
+            dis[u] = ww;
+            q.push({ww, u});
+        }
+    }
 }
+cout << ans << '\n';
