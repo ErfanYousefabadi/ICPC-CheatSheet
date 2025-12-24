@@ -1,39 +1,25 @@
-#pragma GCC optimize("Ofast,unroll-loops,fast-math")
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll ;
-#define pll pair<ll , ll >
-#define all(x) (x).begin(),(x).end()
-#define SZ(x) (ll)(x).size()
-#define X   first
-#define Y   second
-#define mp  make_pair
-#define pii pair<int , int>
-#define vec vector
+#include <bits/stdc++.h>
+// #pragma GCC optimize("O3,unroll-loops")
+// #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 #define file_io freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
-#define migmig ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define pb push_back
+#define fast_io ios::sync_with_stdio(false);cin.tie(0);
+#define what(x) cerr << #x << " is " << x << endl;
+#define kill(x) {cout << x << '\n'; return 0;}
+#define all(x) (x).begin(), (x).end()
+#define pii pair<int, int>
+#define pll pair<ll, ll>
 #define ld long double
-// BIG p : 1000000000000037 , 100000000003
-ll poww(ll a, ll b, ll md) {
-    return (!b ? 1 : (b & 1 ? a * poww(a * a % md, b / 2, md) % md : poww(a * a % md, b / 2, md) % md));
+#define pb push_back
+#define ll long long
+#define F first
+#define S second
+const ll inf = 1e12, mod = 998244353, delta = 1e9 + 9, SQ = 350, P = 6065621;//2971215073
+
+using namespace std;
+const int N = 1e5 + 10, LG = 20;
+
+int main() {
+    fast_io;
+
+    return 0;
 }
-const int maxn = 1000*100+5 ;
-const ll inf = 9223372036854775807 ;
-const ll mod = 1e9 + 7 ;
-const int lg = 20 ;
-
-int main()
-{
-	migmig ;
-
-}
-
-
-
-
-
-
-
-
-

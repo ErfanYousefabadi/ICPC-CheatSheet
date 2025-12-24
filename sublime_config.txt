@@ -1,1 +1,1 @@
-"shell_cmd": "g++ -O2 -Wall ${file_name} && gnome-terminal -- bash -c './a.out; read'"
+"shell_cmd": "g++ -O2 -Wall ${file_name} && gnome-terminal -- bash -c './a.out; echo; echo Press ENTER to continue; read;'"
