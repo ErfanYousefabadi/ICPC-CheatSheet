@@ -1,24 +1,12 @@
-const ll maxn = 2e5 + 10;
-ll z[maxn];
-//  Pattern matching : maximum character matching of start at index i to prefix
-//  text && pattern -----> s = pattern + '$' + text
-// z[i] = number of match prifix start index i
-
-void z_function(string s)
-{
-    ll left = 0, right = 0;
-    for(int i = 1; i < s.size(); i++)
-        if(i <= right && z[i - left] < right - i + 1)
-            z[i] = z[i - left];
-        else
-        {
-            if(i <= right)
-                left = i;
-            else
-                left = right = i;
-            while(right < s.size() && s[right] == s[right - left])
-                right++;
-            z[i] = right - left;
-            right--;
-        }
+int n = s.size();
+int l = 0, r = 0;
+for(int i = 1; i < n; i++) {
+  if(i < r) 
+    z[i] = min(r - i, z[i - l]);
+  while(i + z[i] < n && s[z[i]] == s[i + z[i]]) 
+    z[i]++;
+  if(i + z[i] > r) {
+    l = i;
+    r = i + z[i];
+  }
 }

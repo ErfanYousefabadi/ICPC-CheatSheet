@@ -6,6 +6,7 @@
 #define what(x) cerr << #x << " is " << x << endl;
 #define kill(x) {cout << x << '\n'; return 0;}
 #define all(x) (x).begin(), (x).end()
+#define sz(x) (int)x.size()
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define ld long double
